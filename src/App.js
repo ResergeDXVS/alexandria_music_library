@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Header from './components/header';
-import Song from './components/song';
+import Header from './components/Header/index';
+import Song from './components/Song/index';
 import '../src/App.css';
 class App extends Component {
   
