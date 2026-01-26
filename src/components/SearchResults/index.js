@@ -1,6 +1,6 @@
 import Song from "../Song/index";
 import "./style.css";
-const SearchResults = ({ list }) => {    
+const SearchResults = ({ list, action }) => {    
     return (
         <section className="musiclist">
             <div className="musiclist__title">
@@ -18,7 +18,11 @@ const SearchResults = ({ list }) => {
                                         artist={artist} 
                                         time={time}
                                     />
-                                    <button className="song__addlibrary"> Agregar a Biblioteca</button>
+                                    <button 
+                                        className="song__addlibrary"
+                                        onClick={()=>action(song)}> 
+                                        Agregar a Biblioteca
+                                    </button>
                                 </div>
                             </article>
                             
