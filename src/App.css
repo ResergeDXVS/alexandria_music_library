@@ -26,11 +26,11 @@ main{
     justify-content: flex-start;
     align-items: center;
     padding: 1rem;
-    width: 100%;
+
 }
 
 .musiclist__title{
-    width: 100%;
+
     padding: 0.5rem;
 }
 
@@ -54,7 +54,7 @@ main{
     gap:2rem;
     margin-top:0.5rem;
     padding: 0 1rem;
-    width: 100%;
+
 }
 .border{
     padding: 0.35rem 0.5rem;

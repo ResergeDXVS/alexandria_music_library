@@ -45,14 +45,8 @@ const App = () => {
 			]
 			setSearchSongs(data);
         }
-		
-        fetchSongs();
-    },[]);
-
-	useEffect(()=>{
-		console.log(`Biblioteca actualizada. Cantidad de canciones ${library.length}`);
-	},[library]);
-
+		fetchSongs();
+	},[]);
 	//Función para agregar los datos de las canciones de busqueda a la biblioteca de canciones
 	const addToLibrary = (song) => {
 		if (!library.find(item => item.id === song.id)) {
@@ -82,7 +76,6 @@ const App = () => {
 			<Library libraryList={library}/>
 		</div>
 	);
+	
 }
-
-
 export default App;

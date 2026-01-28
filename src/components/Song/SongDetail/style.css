@@ -10,16 +10,16 @@
     height: 60vh;
 }
 
-.song__image{
+.songdetail__image{
     width:25%;
     border-radius: 1rem;
 }
 
-.song__details{
+.songdetail__details{
     width: 100%;
 }
 
-.song__title{
+.songdetail__title{
     color: #1E90FF;
     font-size: 96px;
     font-weight: 700;
@@ -29,7 +29,7 @@
     text-align: right;
 }
 
-.song__artist{
+.songdetail__artist{
     color: #1E90FF;
     font-size: 88px;
     font-weight: 500;
@@ -39,7 +39,7 @@
     text-align: right;
 }
 
-.song__album{
+.songdetail__album{
     color: #1E90FF;
     font-size: 80px;
     font-weight: 400;
