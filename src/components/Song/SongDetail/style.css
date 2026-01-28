@@ -1,0 +1,50 @@
+.songdetail{
+    margin: 5rem 8rem;
+    padding:3rem;
+    display: flex;
+    flex-direction: row;
+    background-color: #fdfff4;
+    box-sizing: border-box;
+    border-bottom-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    height: 60vh;
+}
+
+.song__image{
+    width:25%;
+    border-radius: 1rem;
+}
+
+.song__details{
+    width: 100%;
+}
+
+.song__title{
+    color: #1E90FF;
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+    margin:0;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.song__artist{
+    color: #1E90FF;
+    font-size: 88px;
+    font-weight: 500;
+    line-height: 1;
+    margin:0;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.song__album{
+    color: #1E90FF;
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 1;
+    margin:0;
+    text-transform: uppercase;
+    text-align: right;
+}

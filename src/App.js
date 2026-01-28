@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import '../src/App.css';
-import Header from './components/Header/index';
 import SearchResults from "./components/SearchResults/index";
 import Library from "./components/Library/index";
+import { Routes, Route } from "react-router-dom";
+import SongDetail from "./components/Song/SongDetail";
 
 
 
@@ -61,10 +62,23 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<Header/>
-			<main>
-				<SearchResults list={searchSongs} action={addToLibrary}/>
-			</main>
+			<Routes>
+				<Route 
+					path="/" 
+					element={
+						<SearchResults 
+							list={searchSongs} 
+							action={addToLibrary}
+						/>
+					}
+				/>
+				<Route 
+					path="/song/:id"
+					element={
+						<SongDetail/>
+					}
+				/>	
+			</Routes>
 			<Library libraryList={library}/>
 		</div>
 	);
