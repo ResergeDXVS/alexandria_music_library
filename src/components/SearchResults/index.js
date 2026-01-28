@@ -4,7 +4,7 @@ const SearchResults = ({ list, action }) => {
     return (
         <section className="musiclist">
             <div className="musiclist__title">
-                <h2>Sugerencias</h2>
+                <h2>Busqueda</h2>
             </div>
             <div className="musiclist__songs">
                 {
