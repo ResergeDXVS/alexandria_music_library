@@ -1,8 +1,20 @@
-
-import Song from "../Song/index";
+import React from "react";
+import Song from "../Song";
 import "./style.css";
 
-const Library = ({ libraryList }) => {
+type SearchAlbum = {
+    idAlbum: string,
+    strAlbum: string,
+    strArtist: string,
+    image: string,
+    intYearReleased: string,
+}
+
+interface libraryProps{
+    libraryList:SearchAlbum[],
+}
+
+const Library = ({ libraryList }:libraryProps) => {
     return (
         <section className="library">
             <div className="library__cross">
@@ -14,13 +26,13 @@ const Library = ({ libraryList }) => {
             <div className="library__list">
                 {
                     libraryList.map(song => {
-                        const {id, nameSong, artist, time} = song;
+                        const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
                         return(
-                            <div className="library__containter" key={id}>
+                            <div className="library__containter" key={idAlbum}>
                                 <Song
-                                    nameSong={nameSong} 
-                                    artist={artist} 
-                                    time={time}
+                                    nameSong={strAlbum} 
+                                    artist={strArtist} 
+                                    year={intYearReleased}
                                 />
                             </div>
                         );

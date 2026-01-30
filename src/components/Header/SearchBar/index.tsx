@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
-
+import useFetchSearchAlbum from "../../../hooks/useFetchSearchAlbum";
+import { useNavigate } from "react-router-dom";
 type FormState = {
     search: string;
 }
 
 const SearchBar = () => {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [form, setForm] = useState<FormState>({
         search:'',
     });
-    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const [query, setQuery] = useState<string>("");
+    const {album, isLoading, error} = useFetchSearchAlbum({ searchMusic: query });
+
+    const useHandleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        //navigate('/');
+        setQuery(form.search);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,8 +24,16 @@ const SearchBar = () => {
         setForm(prev => ({...prev, [name]:value}));
     };
 
+    useEffect(() => {
+        console.log({album, isLoading, error});
+        navigate("/", { state: { list: album, isLoading: isLoading, error: error }});
+    
+    }, [album, isLoading, error, query, navigate]);
+
+
+
     return (
-        <form className="searchbar" onSubmit={handleSubmit}>
+        <form className="searchbar" onSubmit={useHandleSubmit}>
             <input 
                 className="searchbar__input"
                 type="text"

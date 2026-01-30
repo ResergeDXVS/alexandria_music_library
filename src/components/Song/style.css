@@ -44,7 +44,7 @@
     padding-left: 1.25rem;
 }
 
-.song__time{
+.song__year{
     grid-area: time;
     color: #fffaba;
     font-size: 1.2rem;
