@@ -1,6 +1,7 @@
 import React from "react";
 import Song from "../Song";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 type SearchAlbum = {
     idAlbum: string,
@@ -37,11 +38,19 @@ const SearchResults = ({ list, action, isLoading, error }: SearchResultProps) =>
                                         artist={strArtist} 
                                         year={intYearReleased}
                                     />
-                                    <button 
-                                        className="song__addlibrary"
-                                        onClick={()=>action(song)}> 
-                                        Agregar a Biblioteca
-                                    </button>
+                                    <div className="song__options">
+                                        <Link
+                                            className="song__details" 
+                                            to={`/song/${idAlbum}`} >
+                                                Detalles del Album
+                                        </Link>
+
+                                        <button 
+                                            className="song__addlibrary"
+                                            onClick={()=>action(song)}> 
+                                            Agregar a Biblioteca
+                                        </button>
+                                    </div>
                                 </div>
                             </article>
                             
@@ -66,9 +75,6 @@ const SearchResults = ({ list, action, isLoading, error }: SearchResultProps) =>
     );
 
     const renderContent = () => {
-        console.log(list);
-        console.log("isLoading"+isLoading);
-        console.log("error"+error);
         if(list && list.length>0) return structure();
         if (error) return errorStructure();
         if (isLoading) return idleStruture();

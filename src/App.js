@@ -40,13 +40,17 @@ const App = () => {
 
 
 
-
-	//Función para agregar los datos de las canciones de busqueda a la biblioteca de canciones
 	const addToLibrary = (song) => {
-		if (!library.find(item => item.id === song.id)) {
+		if (!library.find(item => item.idAlbum === song.idAlbum)) {
 			setLibrary([...library, song]);
 		}
 	};
+
+	const errorJSX = () => {
+		return (<section className="error">
+			<h2>No se encontró el parámetro en la URL</h2>
+		</section>);
+	}
 
 	return (
 		<div className="App">
@@ -63,11 +67,10 @@ const App = () => {
 					}
 				/>
 				<Route 
-					path="/song/:id"
-					element={
-						<SongDetail/>
-					}
-				/>	
+					path="/song/:idAlbum" 
+					element={<SongDetail />} 
+				/>
+				<Route path="*" element={errorJSX()}/> 
 			</Routes>
 			<Library libraryList={library}/>
 		</div>

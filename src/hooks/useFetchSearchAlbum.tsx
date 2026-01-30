@@ -5,7 +5,6 @@ type SearchAlbum = {
     idAlbum: string,
     strAlbum: string,
     strArtist: string,
-    image: string,
     intYearReleased: string,
 }
 
@@ -44,7 +43,7 @@ const useFetchSearchAlbum = ({searchMusic}:SearchProps) =>{
                     );
                     const music = response.data.album;
 
-                    if (music && music.length) {
+                    if (music && music.length>0) {
                         setSearchAlbumState({
                             album: music,
                             isLoading: false,

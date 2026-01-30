@@ -59,8 +59,41 @@
     padding: .7rem 1.75rem;
 }
 
+.song__options{
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.song__details{
+    width: 100%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background-color: #0A1F44;
+    color: #1E90FF;
+    border: 0.25rem solid #1E90FF;
+    border-radius: 0.75rem;
+    transition: all 0.25s ease;
+    align-self: center;
+    font-size: 1.25rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.song__details:hover{
+    background-color: #1E90FF;
+    color: #fffaba;
+    border: 0.25rem solid #1E90FF;
+    border-radius: 0.75rem;
+    transform: scale(1.05);
+}
+
+
 .song__addlibrary{
-    width: 70%;
+    width: 100%;
     margin: 0.5rem;
     padding: 0.5rem;
     background-color: #0A1F44;
@@ -69,6 +102,7 @@
     border-radius: 0.75rem;
     transition: all 0.5s ease;
     align-self: center;
+    font-size: 1.25rem;
 }
 
 .song__addlibrary:hover{
@@ -76,15 +110,15 @@
     color: #fffaba;
     border: 0.25rem solid #1E90FF;
     border-radius: 0.75rem;
-    font-size: 1.25rem;
+    transform: scale(1.05);
 }
 
 
 .idle, .error{
     width: 100%;
     height: 100%;
-    margin:5%;
-    padding: 5%;
+    margin:5% 0;
+    padding: 5% 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

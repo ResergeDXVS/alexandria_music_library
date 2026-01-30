@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import useFetchSearchAlbum from "../../../hooks/useFetchSearchAlbum";
 import { useNavigate } from "react-router-dom";
@@ -14,22 +14,17 @@ const SearchBar = () => {
     const [query, setQuery] = useState<string>("");
     const {album, isLoading, error} = useFetchSearchAlbum({ searchMusic: query });
 
-    const useHandleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const useHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setQuery(form.search);
+        navigate("/", { state: { list: album, isLoading, error } });
     };
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
         setForm(prev => ({...prev, [name]:value}));
     };
-
-    useEffect(() => {
-        console.log({album, isLoading, error});
-        navigate("/", { state: { list: album, isLoading: isLoading, error: error }});
-    
-    }, [album, isLoading, error, query, navigate]);
-
 
 
     return (
