@@ -1,6 +1,7 @@
 import React from "react";
 import Song from "../Song";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 type SearchAlbum = {
     idAlbum: string,
@@ -28,13 +29,16 @@ const Library = ({ libraryList }:libraryProps) => {
                     libraryList.map(song => {
                         const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
                         return(
-                            <div className="library__containter" key={idAlbum}>
+                            <Link
+                                to={`/song/${idAlbum}`} 
+                                className="library__containter" 
+                                key={idAlbum}>
                                 <Song
                                     nameSong={strAlbum} 
                                     artist={strArtist} 
                                     year={intYearReleased}
                                 />
-                            </div>
+                            </Link>
                         );
                     })
                 }

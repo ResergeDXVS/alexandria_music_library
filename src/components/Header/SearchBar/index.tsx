@@ -8,7 +8,7 @@ type FormState = {
 
 const SearchBar = () => {
     const navigate = useNavigate();
-    const [form] = useState<FormState>({
+    const [form,setForm] = useState<FormState>({
         search:'',
     });
     const {album, isLoading, error, initial} = useFetchSearchAlbum({ searchMusic: form.search});
@@ -25,6 +25,18 @@ const SearchBar = () => {
             } 
         });
     };
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setForm(prev => ({...prev, [name]:value}));
+        navigate("/", { 
+            state: { 
+            list: [], 
+            isLoading:true, 
+            error:null, 
+            initial:false, 
+            } 
+        });
+    };
 
 
 
@@ -36,6 +48,11 @@ const SearchBar = () => {
                 name="search"
                 value={form.search}
                 placeholder="Buscar artista"
+                onChange={
+                    (e) => {
+                        handleInputChange(e);
+                    }
+                }
             ></input>
             <button 
                 className="searchbar__button"
