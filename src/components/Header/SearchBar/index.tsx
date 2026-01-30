@@ -8,23 +8,24 @@ type FormState = {
 
 const SearchBar = () => {
     const navigate = useNavigate();
-    const [form, setForm] = useState<FormState>({
+    const [form] = useState<FormState>({
         search:'',
     });
-    const [query, setQuery] = useState<string>("");
-    const {album, isLoading, error} = useFetchSearchAlbum({ searchMusic: query });
+    const {album, isLoading, error, initial} = useFetchSearchAlbum({ searchMusic: form.search});
 
     const useHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        
         e.preventDefault();
-        setQuery(form.search);
-        navigate("/", { state: { list: album, isLoading, error } });
+        navigate("/", { 
+            state: { 
+            list: album, 
+            isLoading, 
+            error, 
+            initial 
+            } 
+        });
     };
 
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setForm(prev => ({...prev, [name]:value}));
-    };
 
 
     return (
@@ -34,12 +35,7 @@ const SearchBar = () => {
                 type="text"
                 name="search"
                 value={form.search}
-                placeholder="Buscar canción o disco"
-                onChange={
-                    (e) => {
-                        handleInputChange(e);
-                    }
-                }
+                placeholder="Buscar artista"
             ></input>
             <button 
                 className="searchbar__button"

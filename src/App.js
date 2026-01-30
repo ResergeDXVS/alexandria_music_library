@@ -12,6 +12,7 @@ const App = () => {
 	const [library, setLibrary] = useState([]);
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const [initial, setInitial] = useState(true);
 	const location = useLocation();
 	useEffect(() => {
 		//Efecto de Biblioteca
@@ -35,6 +36,7 @@ const App = () => {
 			setSearchSongs(location.state.list);
 			setError(location.state.error);
 			setIsLoading(location.state.isLoading);
+			setInitial(location.state.initial);
 		}
 	}, [location]);
 
@@ -47,10 +49,12 @@ const App = () => {
 	};
 
 	const errorJSX = () => {
-		return (<section className="error">
-			<h2>No se encontró el parámetro en la URL</h2>
+		return (<section className="error__initial">
+			<h2>No se encontró la URL, favor de revisar.</h2>
 		</section>);
 	}
+
+
 
 	return (
 		<div className="App">
@@ -63,6 +67,7 @@ const App = () => {
 							action={addToLibrary}
 							isLoading={isLoading}
 							error={error}
+							initial={initial}
 						/>
 					}
 				/>

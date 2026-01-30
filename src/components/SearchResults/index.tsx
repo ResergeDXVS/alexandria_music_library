@@ -17,10 +17,11 @@ interface SearchResultProps {
     action:any | null,
     isLoading: boolean,
     error:string | null,
+    initial: boolean
 }
 
 
-const SearchResults = ({ list, action, isLoading, error }: SearchResultProps) => {    
+const SearchResults = ({ list, action, isLoading, error, initial }: SearchResultProps) => {    
     const structure = () => (
         <>
             <div className="musiclist__title">
@@ -63,8 +64,7 @@ const SearchResults = ({ list, action, isLoading, error }: SearchResultProps) =>
 
     const idleStruture = () => (
         <section className="idle">
-            <h2>Busca tu canción</h2>
-            <p>En un momento encontraremos la información</p>
+            <h2>Cargando</h2>
         </section>
     );
 
@@ -73,11 +73,18 @@ const SearchResults = ({ list, action, isLoading, error }: SearchResultProps) =>
             <h2>{error}</h2>
         </section>
     );
+    const initialView = () => (
+        <section className="initial">
+            <h2>Busca tu canción</h2>
+            <p>En un momento encontraremos la información</p>
+        </section>
+    )
 
     const renderContent = () => {
-        if(list && list.length>0) return structure();
-        if (error) return errorStructure();
+        if (initial) return initialView();
+        if (list && list.length>0) return structure();
         if (isLoading) return idleStruture();
+        if (error) return errorStructure();
     }
 
     
