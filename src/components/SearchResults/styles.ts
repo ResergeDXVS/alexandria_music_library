@@ -15,7 +15,7 @@ const MusicListTitle = styled.div`
     padding: 0.5rem;
 
     h2{
-        color: #fffaba;
+        color: ${props => props.theme.colors.white};
         font-size: 4rem;
         font-weight: 900;
         line-height: 1;
@@ -42,10 +42,10 @@ const MusicListBorder = styled.article`
     padding: 0.35rem 0.5rem;
     border-top-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
-    transition: all 0.25s ease-in-out;
+    transition: ${props => props.theme.transition};
     &:hover{
         background-color: #1e8fff81;
-        transform: scale(1.05);
+        transform: ${props => props.theme.scale};
     }
 `;
 
@@ -57,41 +57,47 @@ const SongContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    background-color: #0A1F44;
+    background-color: ${props => props.theme.colors.utils};
     margin: 0.5rem;
     padding: .7rem 1.75rem;
 `;
 
 const SongOptions = styled.div`
-    margin: 0;
+    margin: 0.5rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem;
-    a, button{
-        width: auto-fill;
-        margin: 0.5rem;
-        padding: 0.5rem;
-        background-color: #0A1F44;
-        color: #1E90FF;
-        border: 0.25rem solid #1E90FF;
-        border-radius: 0.75rem;
-        transition: all 0.25s ease;
-        align-self: center;
-        font-size: 1.25rem;
-        text-align: center;
-        text-decoration: none;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
 
-        &:hover{
-            background-color: #1E90FF;
-            color: #fffaba;
-            border: 0.25rem solid #1E90FF;
+    button,
+    a {
+        flex:1;
+        width: 50%;
+        height:  50%;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: ${props => props.theme.colors.utils};
+        color: ${props => props.theme.colors.secondary};
+        border: 0.25rem solid ${props => props.theme.colors.secondary};
+        border-radius: 0.75rem;
+        transition: ${props => props.theme.transition};
+        align-self: center;
+        font-size: 24px;
+        text-align: center;
+        text-decoration: none; /* quita subrayado en <a> */
+        line-height: 1;
+        &:hover {
+            background-color: ${props => props.theme.colors.secondary};
+            color: ${props => props.theme.colors.white};
+            border: 0.25rem solid ${props => props.theme.colors.secondary};
             border-radius: 0.75rem;
-            transform: scale(1.05);
+            transform: ${props => props.theme.scale};
         }
     }
 `;
+
+
 
 export {
     MusicListSection,

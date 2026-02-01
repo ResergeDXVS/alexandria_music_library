@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import '../src/App.css';
 import SearchResults from "./components/SearchResults";
 import Library from "./components/Library";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -7,8 +6,8 @@ import SongDetail from "./components/Song/SongDetail";
 import { ThemeProvider } from "styled-components";
 import Theme from "./theme/index";
 import GlobalStyle from "./theme/GlobalStyles";
-import Header from "./components/Header/index";
 import { MessageViewStructure } from "./theme/styles";
+import Header from "./components/Header";
 
 
 
@@ -63,8 +62,9 @@ const App = () => {
 
 
 	return (
-		<>
-			<Header></Header>
+		<ThemeProvider theme={Theme}>
+      		<GlobalStyle/>
+			<Header/>
 			<div className="App">
 				<Routes>
 					<Route 
@@ -87,7 +87,7 @@ const App = () => {
 				</Routes>
 				<Library libraryList={library}/>
 			</div>
-		</>
+		</ThemeProvider>
 	);
 	
 }

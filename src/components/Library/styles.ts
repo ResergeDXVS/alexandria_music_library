@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const LibrarySection = styled.section`
     width: 45%;
-    background-color: #0A1F44;
+    background-color: ${props => props.theme.colors.utils};
     padding: 1.5rem;
     box-sizing: border-box;
     height: 100%;
@@ -10,7 +10,7 @@ const LibrarySection = styled.section`
     right: -70%;
     top: 0;
     box-shadow: -15px 0 15px -10px #1e8fff8c;
-    transition: all 0.5s ease-in-out;
+    transition: ${props => props.theme.transition};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,12 +28,12 @@ const LibraryCancel = styled.div`
         align-items: center;
         margin: 0;
         padding: 16px;
-        color: #fffaba;
+        color: ${props => props.theme.colors.white};
         font-size: 54px;
-        transition: all 0.25s ease-in-out;
+        transition: ${props => props.theme.transition};
         &:hover{
-            filter:brightness(1.5);
-            transform: scale(1.1);
+            filter:${props => props.theme.filter_brightness};
+            transform: ${props => props.theme.scale};
         }
     }
 `;
@@ -46,7 +46,7 @@ const LibraryTitle = styled.div`
     height: 10%;
     padding: 0.5rem;
     h2{
-        color: #1E90FF;
+        color: ${props => props.theme.colors.secondary};
         font-size: 3rem;
         font-weight: 900;
         line-height: 1;
@@ -64,20 +64,20 @@ const LibraryList = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    background-color: #0A1F44;
+    background-color: ${props => props.theme.colors.utils};
     margin: 0.5rem;
     padding: 0.5rem 2.75rem;
     gap: 1.5rem;
     height: 75%;
     overflow-y: auto;
     a{
-        background-color: #1E90FF;
+        background-color: ${props => props.theme.colors.secondary};
         border-radius: 1.5rem;
         padding: 0.5rem;
         text-decoration: none;
-        transition: all 0.5s ease;
+        transition: ${props => props.theme.transition};
         &:hover{
-            transform: scale(1.05);
+            transform: ${props => props.theme.scale};
             cursor: pointer;
         }
     }

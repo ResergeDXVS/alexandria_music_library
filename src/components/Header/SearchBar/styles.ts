@@ -6,39 +6,40 @@ const SearchBarContainer = styled.form`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #254172;
+    background-color: ${props => props.theme.colors.searchbar};
     border-radius: 2rem;
     padding: 0.5rem 2rem;
 `;
 
 const SearchBarInput = styled.input`
+    font-family: ${props => props.theme.fonts.base};
     width: 100%;
-    color:#fffaba;
+    color:${props => props.theme.colors.white};
     font-size: 1.5rem;
     font-weight: 500;
     text-align: left;
-    background-color: #254172;
+    background-color: ${props => props.theme.colors.searchbar};
     border-color: none;
     border: none;
     outline: none;
     &::placeholder {
-        color: #fff896e5;
+        color: ${props => props.theme.colors.white_transform};
     }
 `;
 
 const SearchButton = styled.button`
-    background: #254172;
+    background: ${props => props.theme.colors.searchbar};
     border: none;
     outline: none;
-    transition: all 0.25s ease-in-out;
+    transition: ${props => props.theme.transition};
     i{
         margin: 0;
         font-size: 32px;
-        color: #fffaba;
+        color: ${props => props.theme.colors.white};
         line-height: 1;
     }
     &:hover{
-        transform: scale(1.1);
+        transform: ${props => props.theme.scale};
         color: #fff895;
     }
 `;

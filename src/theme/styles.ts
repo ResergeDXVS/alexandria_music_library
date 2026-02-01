@@ -11,7 +11,7 @@ const MessageViewStructure = styled.section`
     align-items: center;
 
     h2,p{
-        color:#fffaba85;
+        color:${props => props.theme.colors.message};
         margin: 0;
         text-align: center;
     }

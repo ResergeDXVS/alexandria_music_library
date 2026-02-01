@@ -1,13 +1,27 @@
-const Theme = {
-    colors:{
-        primary:'#007bff',
-        secondary:'#6c755d',
-        background:'#f0f0f0',
-    },
-    fonts:{
-        base:'Helvetica, Arial, sans-serif',
-    },
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
-}
+const GlobalStyle = createGlobalStyle`
+    ${reset}
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: ${props => props.theme.colors.primary};
+        font-family: ${props => props.theme.fonts.base};
+        font-size:  ${props => props.theme.fonts.size};
+    }
+    main{
+        padding: 2% 4%;
 
-export default Theme;
+    }
+    button,a{
+        font-family: ${props => props.theme.fonts.base};
+        font-size:  ${props => props.theme.fonts.size};
+    }
+`;
+
+export default GlobalStyle;

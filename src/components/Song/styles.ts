@@ -13,13 +13,13 @@ const SongArticle = styled.article`
     padding: .7rem 1.75rem;
     border-radius: 1rem;
     box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
+    transition: ${props => props.theme.transition};
 `;
 
 
 const SongName = styled.h3`
     grid-area: name;
-    color: #fffaba;
+    color: ${props => props.theme.colors.white};
     font-size: 2rem;
     font-weight: 600;
     line-height: 1.25;
@@ -35,7 +35,7 @@ const SongName = styled.h3`
 
 const SongArtist = styled.h4`
     grid-area: artist;
-    color: #fffaba;
+    color: ${props => props.theme.colors.white};
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 1;
@@ -49,7 +49,7 @@ const SongArtist = styled.h4`
 
 const SongYear = styled.p`
     grid-area: time;
-    color: #fffaba;
+    color: ${props => props.theme.colors.white};
     font-size: 1.2rem;
     font-weight: 100;
     line-height: 1.2;

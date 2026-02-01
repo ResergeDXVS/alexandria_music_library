@@ -13,7 +13,7 @@ const SongDetailSection = styled.section`
     padding:3rem;
     display: flex;
     flex-direction: row;
-    background-color: #fdfff4;
+    background-color: ${props => props.theme.background.library};
     box-sizing: border-box;
     border-bottom-left-radius: 2rem;
     border-top-right-radius: 2rem;
@@ -55,12 +55,12 @@ const SongDetailStructure = styled.div<SongDetailStructureProps>`
     padding: 1.5rem;
     justify-content: space-between;
     align-items: center;
-    border-left: 2px solid #0a1f444d;
+    border-left: 2px solid ${props => props.theme.colors.utils};
 `;
 
 const SongDetailTitle = styled.h3`
     grid-area: title;
-    color: #1E90FF;
+    color: ${props => props.theme.colors.secondary};
     font-size: 3rem;
     font-weight: 500;
     line-height: 1;
@@ -69,7 +69,7 @@ const SongDetailTitle = styled.h3`
     text-align: left;
     b{
         font-weight: 900;
-        color: #0A1F44;
+        color: ${props => props.theme.colors.utils};
         font-size:1.1em;
         font-weight: 500;
         line-height: 1;
@@ -79,7 +79,7 @@ const SongDetailTitle = styled.h3`
 
 const SongDetailArtist = styled.h4`
     grid-area: artist;
-    color: #1E90FF;
+    color: ${props => props.theme.colors.secondary};
     font-size: 2.5rem;
     font-weight: 500;
     line-height: 1;
@@ -88,7 +88,7 @@ const SongDetailArtist = styled.h4`
     text-align: left;
     b{
         font-weight: 900;
-        color: #0A1F44;
+        color: ${props => props.theme.colors.utils};
         font-size:1.1em;
         font-weight: 500;
         line-height: 1;
@@ -98,7 +98,7 @@ const SongDetailArtist = styled.h4`
 
 const SongDetailAlbum = styled.h4`
     grid-area:album;
-    color: #1E90FF;
+    color: ${props => props.theme.colors.secondary};
     font-size: 2rem;
     font-weight: 500;
     line-height: 1;
@@ -107,7 +107,7 @@ const SongDetailAlbum = styled.h4`
     text-align: left;
     b{
         font-weight: 900;
-        color: #0A1F44;
+        color: ${props => props.theme.colors.utils};
         font-size:1.1em;
         font-weight: 500;
         line-height: 1;
@@ -135,7 +135,7 @@ const SongDetailExtra = styled.div<SongDetailExtraProps>`
     gap:2rem;
     h4{
         grid-area:album;
-        color: #1E90FF;
+        color: ${props => props.theme.colors.secondary};
         font-size: 3rem;
         font-weight: 500;
         line-height: 1;
@@ -144,8 +144,8 @@ const SongDetailExtra = styled.div<SongDetailExtraProps>`
         text-align: justify;
     }
     h5{
-        background-color: #0A1F44;
-        color:#fffaba;
+        background-color: ${props => props.theme.colors.utils};
+        color:${props => props.theme.colors.white};
         font-size: 3rem;
         font-weight: 500;
         line-height: 1;

@@ -7,7 +7,7 @@ const HeaderContainer = styled.header`
     box-sizing: border-box;
     padding: 2% 3%;
     margin: 0;
-    background-color: #0A1F44;
+    background-color: ${props => props.theme.colors.utils};
 `;
 
 const HeaderMain = styled.div`
@@ -17,11 +17,11 @@ const HeaderMain = styled.div`
     padding: 0;
     margin: 0;
     gap: 0.5rem;
-    transition: all 0.25s ease-in-out;
+    transition: ${props => props.theme.transition};
     &:hover{
         cursor: pointer;
-        transform: scale(1.05);
-        filter:brightness(1.5);
+        transform: ${props => props.theme.scale};
+        filter:${props => props.theme.filter_brightness};
     }
 
     .header__logo{
@@ -30,7 +30,7 @@ const HeaderMain = styled.div`
     }
 
     h1{
-        color: #fffaba;
+        color: ${props => props.theme.colors.white};
         font-size: 3rem;
         font-weight: 900;
         line-height: 1;
@@ -49,12 +49,12 @@ const HeaderLibrary = styled.div`
         align-items: center;
         margin: 0;
         padding: 16px;
-        color: #fffaba;
+        color: ${props => props.theme.colors.white};
         font-size: 96px;
-        transition: all 0.25s ease-in-out;
+        transition: ${props => props.theme.transition};
         &:hover{
-            filter:brightness(1.5);
-            transform: scale(1.1);
+            filter:${props => props.theme.filter_brightness};
+            transform: ${props => props.theme.scale};
         }
     }
     
