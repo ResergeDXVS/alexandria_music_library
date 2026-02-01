@@ -1,7 +1,8 @@
 import React from "react";
 import Song from "../Song";
-import "./style.css";
 import { Link } from "react-router-dom";
+import { MusicListBorder, MusicListSection, MusicListSongs, MusicListTitle, SongContainer, SongOptions } from "./styles";
+import { MessageViewStructure } from "../../theme/styles";
 
 type SearchAlbum = {
     idAlbum: string,
@@ -24,60 +25,58 @@ interface SearchResultProps {
 const SearchResults = ({ list, action, isLoading, error, initial }: SearchResultProps) => {    
     const structure = () => (
         <>
-            <div className="musiclist__title">
+            <MusicListTitle>
                 <h2>Busqueda</h2>
-            </div>
-            <div className="musiclist__songs">
+            </MusicListTitle>
+            <MusicListSongs>
                 {
                     list.map(song => {
                         const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
                         return(
-                            <article className="border" key={idAlbum}>
-                                <div className="song__container">
+                            <MusicListBorder key={idAlbum}>
+                                <SongContainer>
                                     <Song
                                         nameSong={strAlbum} 
                                         artist={strArtist} 
                                         year={intYearReleased}
                                     />
-                                    <div className="song__options">
-                                        <Link
-                                            className="song__details" 
+                                    <SongOptions>
+                                        <Link 
                                             to={`/song/${idAlbum}`} >
                                                 Detalles del Album
                                         </Link>
 
                                         <button 
-                                            className="song__addlibrary"
                                             onClick={()=>action(song)}> 
                                             Agregar a Biblioteca
                                         </button>
-                                    </div>
-                                </div>
-                            </article>
+                                    </SongOptions>
+                                </SongContainer>
+                            </MusicListBorder>
                             
                         );
                     })
                 }  
-            </div> 
+            </MusicListSongs> 
         </>
     );
 
     const idleStruture = () => (
-        <section className="idle">
+        <MessageViewStructure>
             <h2>Cargando</h2>
-        </section>
+        </MessageViewStructure>
     );
 
     const errorStructure = () => (
-        <section className="error">
+        <MessageViewStructure>
             <h2>{error}</h2>
-        </section>
+        </MessageViewStructure>
     );
     const initialView = () => (
-        <section className="initial">
+        <MessageViewStructure>
             <h2>Busca tu canción</h2>
             <p>En un momento encontraremos la información</p>
-        </section>
+        </MessageViewStructure>
     )
 
     const renderContent = () => {
@@ -89,9 +88,9 @@ const SearchResults = ({ list, action, isLoading, error, initial }: SearchResult
 
     
     return (
-        <section className="musiclist">
+        <MusicListSection>
             {renderContent()}
-        </section>
+        </MusicListSection>
     );
 
 };

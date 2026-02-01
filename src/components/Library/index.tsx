@@ -1,7 +1,7 @@
 import React from "react";
 import Song from "../Song";
-import "./style.css";
 import { Link } from "react-router-dom";
+import { LibraryCancel, LibraryList, LibrarySection, LibraryTitle } from "./styles";
 
 type SearchAlbum = {
     idAlbum: string,
@@ -17,14 +17,14 @@ interface libraryProps{
 
 const Library = ({ libraryList }:libraryProps) => {
     return (
-        <section className="library">
-            <div className="library__cross">
+        <LibrarySection id="library">
+            <LibraryCancel id="library__cross">
                 <i className="fi fi-rs-circle-x"></i>
-            </div>
-            <div className="library__title">
+            </LibraryCancel>
+            <LibraryTitle>
                 <h2>Mi biblioteca</h2>
-            </div>
-            <div className="library__list">
+            </LibraryTitle>
+            <LibraryList>
                 {
                     libraryList.map(song => {
                         const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
@@ -42,8 +42,8 @@ const Library = ({ libraryList }:libraryProps) => {
                         );
                     })
                 }
-            </div>
-        </section>
+            </LibraryList>
+        </LibrarySection>
     );
 }
 

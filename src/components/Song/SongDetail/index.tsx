@@ -1,7 +1,8 @@
 import React from "react";
-import "./style.css";
 import { useParams } from "react-router-dom";
 import useFetchTracks from "../../../hooks/useFetchTrack";
+import { SongDetailAlbum, SongDetailArtist, SongDetailDivImage, SongDetailExtra, SongDetailSection, SongDetailStructure, SongDetailTitle } from "./styles";
+import { MessageViewStructure } from "../../../theme/styles";
 
 
 const SongDetail = () => {
@@ -13,61 +14,70 @@ const SongDetail = () => {
     const { album, isLoading, error } = useFetchTracks({ idAlbum: idAlbum ?? "" });
     if (!idAlbum) {
         return (
-            <section className="error__song">
+            <MessageViewStructure>
                 <h2>No se encontró el parámetro en la URL</h2>
-            </section>
+            </MessageViewStructure>
         );
     }
     
 
     const songDetail = () => (
-        <section className="songdetail">
-            <div className="songdetail__image">
+        <SongDetailSection>
+            <SongDetailDivImage>
                 <img
                     src={`${album?.strAlbumThumb}`}
                     alt={`${album?.strAlbum}`}
                 ></img>
-            </div>
-            <div className={(album?.strGenre || album?.strLabel) ? "songdetail__details" : "songdetail__details__min"}>
-                <h3 className="songdetail__title">Nombre del álbum: <b>{`${album?.strAlbum}`}</b></h3>
-                <h4 className="songdetail__artist">Artista: <b>{`${album?.strArtist}`}</b></h4>
-                <h5 className="songdetail__album">Año de salida: <b>{`${album?.intYearReleased}`}</b></h5>
+            </SongDetailDivImage>
+            <SongDetailStructure 
+                checkStructure={!!(album?.strGenre || album?.strLabel)}>
+                <SongDetailTitle>
+                    Nombre del álbum: <b>{`${album?.strAlbum}`}</b>
+                </SongDetailTitle>
+                <SongDetailArtist>
+                    Artista: <b>{`${album?.strArtist}`}</b>
+                </SongDetailArtist>
+                <SongDetailAlbum>
+                    Año de salida: <b>{`${album?.intYearReleased}`}</b>
+                </SongDetailAlbum>
                 {
                     album?.strGenre && (
-                        <div className="songdetail__genre">
-                            <h4 className="songdetail__labels">
+                        <SongDetailExtra areaName={'genre'}>
+                            <h4>
                                 Género: 
                             </h4>
-                            <h5 className="songdetail__genretext">{`${album?.strGenre}`}</h5>
-                        </div>
+                            <h5>
+                                {`${album?.strGenre}`}
+                            </h5>
+                        </SongDetailExtra>
                     )
                 }
                 {
                     album?.strLabel &&(
-                        <div className="songdetail__label">
-                            <h4 className="songdetail__labels">
+                        <SongDetailExtra areaName={'album'}>
+                            <h4>
                                 Disquera: 
                             </h4>
-                            <h5 className="songdetail__labeltext">{`${album.strLabel}`}</h5>
-                        </div>
+                            <h5>
+                                {`${album.strLabel}`}
+                            </h5>
+                        </SongDetailExtra>
                     )
                 }
-                
-                
-            </div>
-        </section>
+            </SongDetailStructure>
+        </SongDetailSection>
     )
 
     const idleStruture = () => (
-        <section className="idle__song">
+        <MessageViewStructure>
             <h2>Cargando</h2>
-        </section>
+        </MessageViewStructure>
     );
 
     const errorStructure = () => (
-        <section className="error__song">
+        <MessageViewStructure>
             <h2>{error}</h2>
-        </section>
+        </MessageViewStructure>
     );
 
     const renderContent = () => {

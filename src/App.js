@@ -4,6 +4,11 @@ import SearchResults from "./components/SearchResults";
 import Library from "./components/Library";
 import { Routes, Route, useLocation } from "react-router-dom";
 import SongDetail from "./components/Song/SongDetail";
+import { ThemeProvider } from "styled-components";
+import Theme from "./theme/index";
+import GlobalStyle from "./theme/GlobalStyles";
+import Header from "./components/Header/index";
+import { MessageViewStructure } from "./theme/styles";
 
 
 
@@ -16,17 +21,17 @@ const App = () => {
 	const location = useLocation();
 	useEffect(() => {
 		//Efecto de Biblioteca
-		const library = document.querySelector(".library");
-		const libraryButton = document.querySelector(".header__library");
-		const crossButton = document.querySelector(".library__cross");
+		const library = document.querySelector("#library");
+		const libraryButton = document.querySelector("#header__library");
+		const crossButton = document.querySelector("#library__cross");
 
 		if (libraryButton && crossButton) {
 			libraryButton.addEventListener("click", () => {
-				library.classList.add("library--show");
+				library.style.right= "0";
 			});
 
 			crossButton.addEventListener("click", () => {
-				library.classList.remove("library--show");
+				library.style.right= "-70%";
 			});
 		}
 	},[]);
@@ -49,36 +54,40 @@ const App = () => {
 	};
 
 	const errorJSX = () => {
-		return (<section className="error__initial">
+		return (
+		<MessageViewStructure>
 			<h2>No se encontró la URL, favor de revisar.</h2>
-		</section>);
+		</MessageViewStructure>);
 	}
 
 
 
 	return (
-		<div className="App">
-			<Routes>
-				<Route 
-					path="/" 
-					element={
-						<SearchResults 
-							list={searchSongs} 
-							action={addToLibrary}
-							isLoading={isLoading}
-							error={error}
-							initial={initial}
-						/>
-					}
-				/>
-				<Route 
-					path="/song/:idAlbum" 
-					element={<SongDetail />} 
-				/>
-				<Route path="*" element={errorJSX()}/> 
-			</Routes>
-			<Library libraryList={library}/>
-		</div>
+		<>
+			<Header></Header>
+			<div className="App">
+				<Routes>
+					<Route 
+						path="/" 
+						element={
+							<SearchResults 
+								list={searchSongs} 
+								action={addToLibrary}
+								isLoading={isLoading}
+								error={error}
+								initial={initial}
+							/>
+						}
+					/>
+					<Route 
+						path="/song/:idAlbum" 
+						element={<SongDetail />} 
+					/>
+					<Route path="*" element={errorJSX()}/> 
+				</Routes>
+				<Library libraryList={library}/>
+			</div>
+		</>
 	);
 	
 }

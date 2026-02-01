@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./style.css";
 import useFetchSearchAlbum from "../../../hooks/useFetchSearchAlbum";
 import { useNavigate } from "react-router-dom";
+import { SearchBarContainer, SearchBarInput, SearchButton } from "./styles";
 type FormState = {
     search: string;
 }
@@ -41,9 +41,9 @@ const SearchBar = () => {
 
 
     return (
-        <form className="searchbar" onSubmit={useHandleSubmit}>
-            <input 
-                className="searchbar__input"
+        <SearchBarContainer 
+            onSubmit={useHandleSubmit}>
+            <SearchBarInput
                 type="text"
                 name="search"
                 value={form.search}
@@ -53,13 +53,12 @@ const SearchBar = () => {
                         handleInputChange(e);
                     }
                 }
-            ></input>
-            <button 
-                className="searchbar__button"
+            ></SearchBarInput>
+            <SearchButton
                 type="submit">
                 <i className="fi fi-rs-search"></i>
-            </button>
-        </form>
+            </SearchButton>
+        </SearchBarContainer>
     );
 }
 
