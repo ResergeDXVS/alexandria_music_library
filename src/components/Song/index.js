@@ -1,15 +1,12 @@
-import './style.css';
-const Song = ({nameSong, artist, time}) => {
-
+import { SongArticle, SongArtist, SongName, SongYear } from './styles';
+const Song = ({nameSong, artist, year}) => {
     return (
-        <article className="song">
-            <h3 className="song__name">{nameSong}</h3>
-            <h4 className="song__artist">{artist}</h4>
-            <p className="song__time">Tiempo: {time}</p>
-        </article>
+        <SongArticle>
+            <SongName>{nameSong}</SongName>
+            <SongArtist>{artist}</SongArtist>
+            <SongYear>Año: {year}</SongYear>
+        </SongArticle>
     );
 };
-
-
 
 export default Song;

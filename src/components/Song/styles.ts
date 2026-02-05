@@ -1,4 +1,6 @@
-.song{
+import styled from "styled-components";
+
+const SongArticle = styled.article`
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -11,12 +13,13 @@
     padding: .7rem 1.75rem;
     border-radius: 1rem;
     box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
-}
+    transition: ${props => props.theme.transition};
+`;
 
-.song__name{
+
+const SongName = styled.h3`
     grid-area: name;
-    color: #fffaba;
+    color: ${props => props.theme.colors.white};
     font-size: 2rem;
     font-weight: 600;
     line-height: 1.25;
@@ -28,11 +31,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+`;
 
-.song__artist{
+const SongArtist = styled.h4`
     grid-area: artist;
-    color: #fffaba;
+    color: ${props => props.theme.colors.white};
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 1;
@@ -42,11 +45,11 @@
     text-transform: capitalize;
     width: 100%;
     padding-left: 1.25rem;
-}
+`;
 
-.song__time{
+const SongYear = styled.p`
     grid-area: time;
-    color: #fffaba;
+    color: ${props => props.theme.colors.white};
     font-size: 1.2rem;
     font-weight: 100;
     line-height: 1.2;
@@ -56,4 +59,11 @@
     text-transform: uppercase;
     width: auto;
     padding-right: .75rem;
+`;
+
+export {
+    SongArticle,
+    SongName,
+    SongArtist,
+    SongYear
 }

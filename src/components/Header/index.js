@@ -1,17 +1,27 @@
+import { useNavigate } from 'react-router-dom';
 import logo from '../../logo_AML.png';
-import "./style.css";
+import SearchBar from './SearchBar';
+import { HeaderContainer, HeaderLibrary, HeaderMain } from './styles';
 const Header = () => {
-
+    const navigate = useNavigate();
+    
     return (
-        <header>
-            <div className="header__main">
-                <img className="header__logo" src={logo} alt="Alexandria Music Library"/>
+        <HeaderContainer>
+            <HeaderMain
+                onClick={()=>navigate("/", 
+                    { state: { list: [], isLoading: false, error: null, initial: true} })}
+                >
+                <img 
+                    className="header__logo" 
+                    src={logo} 
+                    alt="Alexandria Music Library"/>
                 <h1>Alexandria Music Library</h1>
-            </div>
-            <div className="header__library">
+            </HeaderMain>
+            <SearchBar/>
+            <HeaderLibrary id="header__library">
                 <i className="fi fi-rs-album-circle-user"></i>
-            </div>
-        </header>
+            </HeaderLibrary>
+        </HeaderContainer>
     );
 }
 
