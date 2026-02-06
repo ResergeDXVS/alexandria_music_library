@@ -13,7 +13,7 @@ import Header from "./components/Header";
 
 const App = () => {
 	const [searchSongs, setSearchSongs] = useState([]);
-	const [library, setLibrary] = useState([]);
+	//const [library, setLibrary] = useState([]);
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [initial, setInitial] = useState(true);
@@ -46,11 +46,11 @@ const App = () => {
 
 
 
-	const addToLibrary = (song) => {
-		if (!library.find(item => item.idAlbum === song.idAlbum)) {
-			setLibrary([...library, song]);
-		}
-	};
+	// const addToLibrary = (song) => {
+	// 	if (!library.find(item => item.idAlbum === song.idAlbum)) {
+	// 		setLibrary([...library, song]);
+	// 	}
+	// };
 
 	const errorJSX = () => {
 		return (
@@ -71,8 +71,7 @@ const App = () => {
 						path="/" 
 						element={
 							<SearchResults 
-								list={searchSongs} 
-								action={addToLibrary}
+								list={searchSongs}
 								isLoading={isLoading}
 								error={error}
 								initial={initial}
@@ -85,7 +84,7 @@ const App = () => {
 					/>
 					<Route path="*" element={errorJSX()}/> 
 				</Routes>
-				<Library libraryList={library}/>
+				<Library/>
 			</div>
 		</ThemeProvider>
 	);

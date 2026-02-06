@@ -1,21 +1,23 @@
 import React from "react";
 import Song from "../Song";
-import { Link } from "react-router-dom";
-import { LibraryCancel, LibraryList, LibrarySection, LibraryTitle } from "./styles";
+import { LibraryCancel, LibraryContainer, LibraryList, LibrarySection, LibraryTitle } from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSong } from "../../redux/actions/libraryActions";
+import { SearchAlbum } from "../../redux/store/store";
+import { RootState } from "../../redux/reducers";
 
-type SearchAlbum = {
-    idAlbum: string,
-    strAlbum: string,
-    strArtist: string,
-    image: string,
-    intYearReleased: string,
-}
 
-interface libraryProps{
-    libraryList:SearchAlbum[],
-}
 
-const Library = ({ libraryList }:libraryProps) => {
+
+const Library = () => {
+    const dispatch = useDispatch();
+    const selector = useSelector((song:RootState)=>song.library.albums);
+
+    const deleteSong = (song:string) => {
+        console.log(song);
+        dispatch(removeSong(song));
+    }
+
     return (
         <LibrarySection id="library">
             <LibraryCancel id="library__cross">
@@ -26,19 +28,18 @@ const Library = ({ libraryList }:libraryProps) => {
             </LibraryTitle>
             <LibraryList>
                 {
-                    libraryList.map(song => {
+                    selector.map((song:SearchAlbum) => {
                         const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
                         return(
-                            <Link
-                                to={`/song/${idAlbum}`} 
-                                className="library__containter" 
+                            <LibraryContainer
                                 key={idAlbum}>
                                 <Song
                                     nameSong={strAlbum} 
                                     artist={strArtist} 
                                     year={intYearReleased}
                                 />
-                            </Link>
+                                <button onClick={()=>deleteSong(idAlbum)}>Eliminar</button>
+                            </LibraryContainer>
                         );
                     })
                 }

@@ -3,26 +3,35 @@ import Song from "../Song";
 import { Link } from "react-router-dom";
 import { MusicListBorder, MusicListSection, MusicListSongs, MusicListTitle, SongContainer, SongOptions } from "./styles";
 import { MessageViewStructure } from "../../theme/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { addSong } from "../../redux/actions/libraryActions";
+import { SearchAlbum } from "../../redux/store/store";
+import { RootState } from "../../redux/reducers";
 
-type SearchAlbum = {
-    idAlbum: string,
-    strAlbum: string,
-    strArtist: string,
-    image: string,
-    intYearReleased: string,
-}
 
 
 interface SearchResultProps {
     list:SearchAlbum[],
-    action:any | null,
     isLoading: boolean,
     error:string | null,
     initial: boolean
 }
 
 
-const SearchResults = ({ list, action, isLoading, error, initial }: SearchResultProps) => {    
+const SearchResults = ({ list, isLoading, error, initial }: SearchResultProps) => {  
+    
+    const dispatch = useDispatch();
+    const selector = useSelector((state: RootState)=>state.library.albums);
+
+    const addLibrary = (song:SearchAlbum) =>{
+        const exists = selector.some((album:SearchAlbum) => album.idAlbum === song.idAlbum)
+        console.log(selector);
+        console.log(exists)
+        if(!exists) dispatch(addSong(song));
+        
+    }
+
+    
     const structure = () => (
         <>
             <MusicListTitle>
@@ -30,7 +39,7 @@ const SearchResults = ({ list, action, isLoading, error, initial }: SearchResult
             </MusicListTitle>
             <MusicListSongs>
                 {
-                    list.map(song => {
+                    list.map((song:SearchAlbum) => {
                         const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
                         return(
                             <MusicListBorder key={idAlbum}>
@@ -47,7 +56,7 @@ const SearchResults = ({ list, action, isLoading, error, initial }: SearchResult
                                         </Link>
 
                                         <button 
-                                            onClick={()=>action(song)}> 
+                                            onClick={() => addLibrary(song)}> 
                                             Agregar a Biblioteca
                                         </button>
                                     </SongOptions>
