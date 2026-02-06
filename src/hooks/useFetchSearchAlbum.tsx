@@ -36,8 +36,8 @@ const useFetchSearchAlbum = ({searchMusic}:SearchProps) =>{
                     `https://www.theaudiodb.com/api/v1/json/123/searchalbum.php?s=${searchMusic}`
                 );
                 const music = response.data.album;
-
-                if (music && music.length>0) {
+                console.log(music);
+                if (music!==null) {
                     setSearchAlbumState({
                         album: music,
                         isLoading: false,

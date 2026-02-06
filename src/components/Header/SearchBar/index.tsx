@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetchSearchAlbum from "../../../hooks/useFetchSearchAlbum";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SearchBarContainer, SearchBarInput, SearchButton } from "./styles";
 type FormState = {
     search: string;
@@ -8,35 +8,36 @@ type FormState = {
 
 const SearchBar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [form,setForm] = useState<FormState>({
         search:'',
     });
-    const {album, isLoading, error, initial} = useFetchSearchAlbum({ searchMusic: form.search});
+    const [query, setQuery] = useState<string>("");
+    const {album, isLoading, error, initial} = useFetchSearchAlbum({ 
+        searchMusic: query
+    });
 
     const useHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        
         e.preventDefault();
-        navigate("/", { 
-            state: { 
-            list: album, 
-            isLoading, 
-            error, 
-            initial 
-            } 
-        });
+        setQuery(form.search);
     };
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
         setForm(prev => ({...prev, [name]:value}));
-        navigate("/", { 
-            state: { 
-            list: [], 
-            isLoading:true, 
-            error:null, 
-            initial:false, 
-            } 
-        });
     };
+
+    useEffect(() => {
+        if (query && location.pathname === "/") {
+            navigate("/", {
+            state: {
+                list: album,
+                isLoading,
+                error,
+                initial,
+            },
+            });
+        }
+    }, [album, isLoading, error, initial, query, navigate, location.pathname]);
 
 
 
