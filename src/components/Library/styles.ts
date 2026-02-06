@@ -70,22 +70,51 @@ const LibraryList = styled.div`
     gap: 1.5rem;
     height: 75%;
     overflow-y: auto;
-    a{
-        background-color: ${props => props.theme.colors.secondary};
-        border-radius: 1.5rem;
-        padding: 0.5rem;
-        text-decoration: none;
+`;
+
+const LibraryContainer = styled.article`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    background-color: ${props => props.theme.colors.secondary};
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: ${props => props.theme.transition};
+    &:hover{
+        transform: ${props => props.theme.scale};
+    }
+    button{
+        flex:1;
+        width: 50%;
+        height:  50%;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: ${props => props.theme.colors.utils};
+        color: ${props => props.theme.colors.secondary};
+        border: 0.25rem solid ${props => props.theme.colors.secondary};
+        border-radius: 0.75rem;
         transition: ${props => props.theme.transition};
-        &:hover{
-            transform: ${props => props.theme.scale};
-            cursor: pointer;
+        align-self: center;
+        font-size: 24px;
+        text-align: center;
+        text-decoration: none; 
+        line-height: 1;
+        &:hover {
+            background-color: ${props => props.theme.colors.white};
+            color: ${props => props.theme.colors.utils};
+            border: 0.25rem solid ${props => props.theme.colors.white};
+            border-radius: 0.75rem;
         }
     }
 `;
+
 
 export {
     LibrarySection,
     LibraryCancel,
     LibraryTitle,
-    LibraryList
+    LibraryList,
+    LibraryContainer
 };
