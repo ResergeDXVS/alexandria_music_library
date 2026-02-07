@@ -10,6 +10,7 @@ declare module 'styled-components' {
             message:string,
             white:string,
             white_transform:string,
+            error:string,
         },
         background:{
             library:string,

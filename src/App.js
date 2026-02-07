@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SearchResults from "./components/SearchResults";
 import Library from "./components/Library";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import SongDetail from "./components/Song/SongDetail";
 import { ThemeProvider } from "styled-components";
 import Theme from "./theme/index";
@@ -12,12 +12,6 @@ import Header from "./components/Header";
 
 
 const App = () => {
-	const [searchSongs, setSearchSongs] = useState([]);
-	//const [library, setLibrary] = useState([]);
-	const [error, setError] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
-	const [initial, setInitial] = useState(true);
-	const location = useLocation();
 	useEffect(() => {
 		//Efecto de Biblioteca
 		const library = document.querySelector("#library");
@@ -35,14 +29,7 @@ const App = () => {
 		}
 	},[]);
 
-	useEffect(() => {
-		if (location.state){
-			setSearchSongs(location.state.list);
-			setError(location.state.error);
-			setIsLoading(location.state.isLoading);
-			setInitial(location.state.initial);
-		}
-	}, [location]);
+
 
 
 
@@ -70,12 +57,7 @@ const App = () => {
 					<Route 
 						path="/" 
 						element={
-							<SearchResults 
-								list={searchSongs}
-								isLoading={isLoading}
-								error={error}
-								initial={initial}
-							/>
+							<SearchResults />
 						}
 					/>
 					<Route 

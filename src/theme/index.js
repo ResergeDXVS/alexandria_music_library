@@ -8,6 +8,7 @@ const Theme = {
         message:'#fffaba85',
         white:'#fffaba',
         white_transform:'#fff896e5',
+        error:"#ffabab",
     },
     background:{
         library:'#fdfff4',

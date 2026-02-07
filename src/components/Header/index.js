@@ -1,16 +1,19 @@
-import { useNavigate } from 'react-router-dom';
 import logo from '../../logo_AML.png';
 import SearchBar from './SearchBar';
 import { HeaderContainer, HeaderLibrary, HeaderMain } from './styles';
+import { useAppDispatch } from '../../redux/store/store';
+import { resetResults } from '../../redux/slices/searchSlice';
+import { useNavigate } from 'react-router-dom';
 const Header = () => {
     const navigate = useNavigate();
-    
+    const dispatch = useAppDispatch();
+    const resetView = () =>{
+        dispatch(resetResults());
+        navigate("/");
+    }
     return (
         <HeaderContainer>
-            <HeaderMain
-                onClick={()=>navigate("/", 
-                    { state: { list: [], isLoading: false, error: null, initial: true} })}
-                >
+            <HeaderMain onClick={()=>resetView()}>
                 <img 
                     className="header__logo" 
                     src={logo} 

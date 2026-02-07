@@ -3,32 +3,21 @@ import Song from "../Song";
 import { Link } from "react-router-dom";
 import { MusicListBorder, MusicListSection, MusicListSongs, MusicListTitle, SongContainer, SongOptions } from "./styles";
 import { MessageViewStructure } from "../../theme/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { addSong } from "../../redux/actions/libraryActions";
-import { SearchAlbum } from "../../redux/store/store";
-import { RootState } from "../../redux/reducers";
+import { SearchAlbum, useAppDispatch, useAppSelector } from "../../redux/store/store";
+import { addSong } from "../../redux/slices/librarySlice";
 
 
 
-interface SearchResultProps {
-    list:SearchAlbum[],
-    isLoading: boolean,
-    error:string | null,
-    initial: boolean
-}
-
-
-const SearchResults = ({ list, isLoading, error, initial }: SearchResultProps) => {  
+const SearchResults = () => {  
+    const dispatch = useAppDispatch();
+    const results = useAppSelector((state)=>state.search.results);
+    const isLoading = useAppSelector((state)=>state.search.loading);
+    const error = useAppSelector((state)=>state.search.error);
+    const idle = useAppSelector((state)=>state.search.idle);
     
-    const dispatch = useDispatch();
-    const selector = useSelector((state: RootState)=>state.library.albums);
-
+    
     const addLibrary = (song:SearchAlbum) =>{
-        const exists = selector.some((album:SearchAlbum) => album.idAlbum === song.idAlbum)
-        console.log(selector);
-        console.log(exists)
-        if(!exists) dispatch(addSong(song));
-        
+        dispatch(addSong(song));
     }
 
     
@@ -39,7 +28,7 @@ const SearchResults = ({ list, isLoading, error, initial }: SearchResultProps) =
             </MusicListTitle>
             <MusicListSongs>
                 {
-                    list.map((song:SearchAlbum) => {
+                    results && results.map((song:SearchAlbum) => {
                         const {idAlbum, strAlbum, strArtist, intYearReleased} = song;
                         return(
                             <MusicListBorder key={idAlbum}>
@@ -70,29 +59,30 @@ const SearchResults = ({ list, isLoading, error, initial }: SearchResultProps) =
         </>
     );
 
-    const idleStruture = () => (
-        <MessageViewStructure>
+    const loadingStruture = () => (
+        <MessageViewStructure adjustMessage={"loading"}>
+            <div className="spinner-border" role="status"/>
             <h2>Cargando</h2>
         </MessageViewStructure>
     );
 
     const errorStructure = () => (
-        <MessageViewStructure>
+        <MessageViewStructure adjustMessage={"error"}>
             <h2>{error}</h2>
         </MessageViewStructure>
     );
     const initialView = () => (
-        <MessageViewStructure>
+        <MessageViewStructure adjustMessage={"initial"}>
             <h2>Busca tu canción</h2>
             <p>En un momento encontraremos la información</p>
         </MessageViewStructure>
     )
 
     const renderContent = () => {
-        if (initial) return initialView();
-        if (list && list.length>0) return structure();
-        if (isLoading) return idleStruture();
-        if (error) return errorStructure();
+        if(idle) return initialView();
+        if(isLoading && error==="") return loadingStruture();
+        if(error!=="") return errorStructure();
+        if(results) return structure();
     }
 
     

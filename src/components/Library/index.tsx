@@ -1,19 +1,18 @@
 import React from "react";
 import Song from "../Song";
 import { LibraryCancel, LibraryContainer, LibraryList, LibrarySection, LibraryTitle } from "./styles";
-import { useDispatch, useSelector } from "react-redux";
-import { removeSong } from "../../redux/actions/libraryActions";
-import { SearchAlbum } from "../../redux/store/store";
-import { RootState } from "../../redux/reducers";
+import { useSelector } from "react-redux";
+import { RootState, SearchAlbum, useAppDispatch } from "../../redux/store/store";
+import { removeSong } from "../../redux/slices/librarySlice";
 
 
 
 
 const Library = () => {
-    const dispatch = useDispatch();
-    const selector = useSelector((song:RootState)=>song.library.albums);
+    const dispatch = useAppDispatch();
+    const selector = useSelector((song:RootState)=>song.library.library);
 
-    const deleteSong = (song:string) => {
+    const deleteSong = (song:SearchAlbum) => {
         console.log(song);
         dispatch(removeSong(song));
     }
@@ -38,7 +37,7 @@ const Library = () => {
                                     artist={strArtist} 
                                     year={intYearReleased}
                                 />
-                                <button onClick={()=>deleteSong(idAlbum)}>Eliminar</button>
+                                <button onClick={()=>deleteSong(song)}>Eliminar</button>
                             </LibraryContainer>
                         );
                     })

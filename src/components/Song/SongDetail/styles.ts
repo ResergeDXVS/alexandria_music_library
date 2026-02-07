@@ -136,7 +136,7 @@ const SongDetailExtra = styled.div<SongDetailExtraProps>`
     h4{
         grid-area:album;
         color: ${props => props.theme.colors.secondary};
-        font-size: 3rem;
+        font-size: 1.7rem;
         font-weight: 500;
         line-height: 1;
         margin:0;
@@ -146,14 +146,14 @@ const SongDetailExtra = styled.div<SongDetailExtraProps>`
     h5{
         background-color: ${props => props.theme.colors.utils};
         color:${props => props.theme.colors.white};
-        font-size: 3rem;
+        font-size: 1.5rem;
         font-weight: 500;
         line-height: 1;
         margin:0;
         text-transform: uppercase;
         text-align: center;
         border-radius: 1.5rem;
-        padding: 0.65rem 0.95rem;
+        padding: 0.55rem 0.75rem;
     }
 `;
 

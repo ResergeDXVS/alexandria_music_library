@@ -14,7 +14,7 @@ const SongDetail = () => {
     const { album, isLoading, error } = useFetchTracks({ idAlbum: idAlbum ?? "" });
     if (!idAlbum) {
         return (
-            <MessageViewStructure>
+            <MessageViewStructure adjustMessage={"error"}>
                 <h2>No se encontró el parámetro en la URL</h2>
             </MessageViewStructure>
         );
@@ -68,14 +68,15 @@ const SongDetail = () => {
         </SongDetailSection>
     )
 
-    const idleStruture = () => (
-        <MessageViewStructure>
+    const loadingStruture = () => (
+        <MessageViewStructure adjustMessage={"loading"}>
+            <div className="spinner-border" role="status"/>
             <h2>Cargando</h2>
         </MessageViewStructure>
     );
 
     const errorStructure = () => (
-        <MessageViewStructure>
+        <MessageViewStructure adjustMessage={"error"}>
             <h2>{error}</h2>
         </MessageViewStructure>
     );
@@ -84,7 +85,7 @@ const SongDetail = () => {
         console.log(album)
         if(album) return songDetail();
         if (error) return errorStructure();
-        if (isLoading) return idleStruture();
+        if (isLoading) return loadingStruture();
     }
 
 

@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
-import useFetchSearchAlbum from "../../../hooks/useFetchSearchAlbum";
-import { useLocation, useNavigate } from "react-router-dom";
 import { SearchBarContainer, SearchBarInput, SearchButton } from "./styles";
+import { fetchSongs } from "../../../redux/slices/searchSlice";
+import { useAppDispatch } from "../../../redux/store/store";
 type FormState = {
     search: string;
 }
 
 const SearchBar = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const dispatch = useAppDispatch();
     const [form,setForm] = useState<FormState>({
         search:'',
     });
     const [query, setQuery] = useState<string>("");
-    const {album, isLoading, error, initial} = useFetchSearchAlbum({ 
-        searchMusic: query
-    });
 
     const useHandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -27,17 +23,14 @@ const SearchBar = () => {
     };
 
     useEffect(() => {
-        if (query && location.pathname === "/") {
-            navigate("/", {
-            state: {
-                list: album,
-                isLoading,
-                error,
-                initial,
-            },
-            });
+        if (query.trim()!=="") {
+            dispatch(fetchSongs(query));
         }
-    }, [album, isLoading, error, initial, query, navigate, location.pathname]);
+    }, [query, dispatch]);
+
+
+
+
 
 
 
