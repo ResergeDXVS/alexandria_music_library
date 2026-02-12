@@ -60,19 +60,19 @@ const SearchResults = () => {
     );
 
     const loadingStruture = () => (
-        <MessageViewStructure adjustMessage={"loading"}>
+        <MessageViewStructure $adjustMessage={"loading"}>
             <div className="spinner-border" role="status"/>
             <h2>Cargando</h2>
         </MessageViewStructure>
     );
 
     const errorStructure = () => (
-        <MessageViewStructure adjustMessage={"error"}>
+        <MessageViewStructure $adjustMessage={"error"}>
             <h2>{error}</h2>
         </MessageViewStructure>
     );
     const initialView = () => (
-        <MessageViewStructure adjustMessage={"initial"}>
+        <MessageViewStructure $adjustMessage={"initial"}>
             <h2>Busca tu canción</h2>
             <p>En un momento encontraremos la información</p>
         </MessageViewStructure>

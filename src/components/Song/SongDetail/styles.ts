@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 interface SongDetailStructureProps {
-    checkStructure:boolean;
+    $checkStructure:boolean;
 } 
 
 interface SongDetailExtraProps {
-    areaName:string;
+    $areaName:string;
 }
 
 const SongDetailSection = styled.section`
@@ -40,10 +40,10 @@ const SongDetailStructure = styled.div<SongDetailStructureProps>`
     display: grid;
     grid-template-columns: repeat(2,1fr);   
     grid-template-rows: ${props=>{
-            return props.checkStructure ? 'repeat(4,1fr)':'repeat(3,1fr)';
+            return props.$checkStructure ? 'repeat(4,1fr)':'repeat(3,1fr)';
         }};
     grid-template-areas: ${props=>{
-        return props.checkStructure ? 
+        return props.$checkStructure ? 
         `"title title"
         "artist artist"
         "album album"
@@ -117,14 +117,14 @@ const SongDetailAlbum = styled.h4`
 
 const SongDetailExtra = styled.div<SongDetailExtraProps>`
     grid-area:${props=>{
-        const area = props.areaName 
+        const area = props.$areaName 
         if (area==='genre') return 'genre';
         if (area==='label') return 'label';
     }};
     display: flex;
     flex-direction: row;
     justify-content: ${props=>{
-        const area = props.areaName 
+        const area = props.$areaName 
         if (area==='genre') return 'flex-start';
         if (area==='label') return 'flex-end';
     }};;

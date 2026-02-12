@@ -8,13 +8,12 @@ import { MessageViewStructure } from "../../../theme/styles";
 const SongDetail = () => {
 
     const { idAlbum } = useParams<{ idAlbum: string }>();
-    console.log("idAlbum:", idAlbum);
 
 
     const { album, isLoading, error } = useFetchTracks({ idAlbum: idAlbum ?? "" });
     if (!idAlbum) {
         return (
-            <MessageViewStructure adjustMessage={"error"}>
+            <MessageViewStructure $adjustMessage={"error"}>
                 <h2>No se encontró el parámetro en la URL</h2>
             </MessageViewStructure>
         );
@@ -30,7 +29,7 @@ const SongDetail = () => {
                 ></img>
             </SongDetailDivImage>
             <SongDetailStructure 
-                checkStructure={!!(album?.strGenre || album?.strLabel)}>
+                $checkStructure={!!(album?.strGenre || album?.strLabel)}>
                 <SongDetailTitle>
                     Nombre del álbum: <b>{`${album?.strAlbum}`}</b>
                 </SongDetailTitle>
@@ -42,7 +41,7 @@ const SongDetail = () => {
                 </SongDetailAlbum>
                 {
                     album?.strGenre && (
-                        <SongDetailExtra areaName={'genre'}>
+                        <SongDetailExtra $areaName={'genre'}>
                             <h4>
                                 Género: 
                             </h4>
@@ -54,7 +53,7 @@ const SongDetail = () => {
                 }
                 {
                     album?.strLabel &&(
-                        <SongDetailExtra areaName={'album'}>
+                        <SongDetailExtra $areaName={'label'}>
                             <h4>
                                 Disquera: 
                             </h4>
@@ -69,20 +68,19 @@ const SongDetail = () => {
     )
 
     const loadingStruture = () => (
-        <MessageViewStructure adjustMessage={"loading"}>
+        <MessageViewStructure $adjustMessage={"loading"}>
             <div className="spinner-border" role="status"/>
             <h2>Cargando</h2>
         </MessageViewStructure>
     );
 
     const errorStructure = () => (
-        <MessageViewStructure adjustMessage={"error"}>
+        <MessageViewStructure $adjustMessage={"error"}>
             <h2>{error}</h2>
         </MessageViewStructure>
     );
 
     const renderContent = () => {
-        console.log(album)
         if(album) return songDetail();
         if (error) return errorStructure();
         if (isLoading) return loadingStruture();

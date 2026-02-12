@@ -1,8 +1,7 @@
 import React from "react";
 import Song from "../Song";
 import { LibraryCancel, LibraryContainer, LibraryList, LibrarySection, LibraryTitle } from "./styles";
-import { useSelector } from "react-redux";
-import { RootState, SearchAlbum, useAppDispatch } from "../../redux/store/store";
+import { SearchAlbum, useAppDispatch, useAppSelector } from "../../redux/store/store";
 import { removeSong } from "../../redux/slices/librarySlice";
 
 
@@ -10,10 +9,9 @@ import { removeSong } from "../../redux/slices/librarySlice";
 
 const Library = () => {
     const dispatch = useAppDispatch();
-    const selector = useSelector((song:RootState)=>song.library.library);
+    const selector = useAppSelector((song)=>song.library.library);
 
     const deleteSong = (song:SearchAlbum) => {
-        console.log(song);
         dispatch(removeSong(song));
     }
 
